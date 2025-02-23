@@ -36,6 +36,7 @@
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
+            cursor: pointer;
         }
         .btn {
             background: #ff9800;
@@ -44,6 +45,18 @@
             border: none;
             cursor: pointer;
             border-radius: 5px;
+        }
+        #bookingForm {
+            display: none;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #successMessage {
+            display: none;
+            color: #00ff00;
+            font-weight: bold;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -56,20 +69,38 @@
     <div class="container">
         <section id="destinations" class="section">
             <h2>Top Destinations</h2>
-            <div class="card">Bali, Indonesia - $800</div>
-            <div class="card">Paris, France - $1200</div>
-            <div class="card">Tokyo, Japan - $1000</div>
-            <div class="card">Goa, India - $600</div>
+            <div class="card" onclick="openBooking('Bali, Indonesia')">Bali, Indonesia - $800</div>
+            <div class="card" onclick="openBooking('Paris, France')">Paris, France - $1200</div>
+            <div class="card" onclick="openBooking('Tokyo, Japan')">Tokyo, Japan - $1000</div>
+            <div class="card" onclick="openBooking('Goa, India')">Goa, India - $600</div>
         </section>
 
         <section id="booking" class="section">
             <h2>Book Your Trip</h2>
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Email" required>
-                <button type="submit" class="btn">Submit</button>
-            </form>
+            <div id="bookingForm">
+                <p>Booking for: <span id="selectedDestination"></span></p>
+                <form onsubmit="submitBooking(event)">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+            <div id="successMessage">Booking successful! Congratulations on your trip.</div>
         </section>
     </div>
+
+    <script>
+        function openBooking(destination) {
+            document.getElementById('selectedDestination').innerText = destination;
+            document.getElementById('bookingForm').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+        
+        function submitBooking(event) {
+            event.preventDefault();
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
