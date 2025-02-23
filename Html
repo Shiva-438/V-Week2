@@ -3,104 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Booking</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            background: #1e1e1e;
-            padding: 15px;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-        }
-        .section {
-            margin-bottom: 50px;
-        }
-        .card {
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-        .btn {
-            background: #ff9800;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        #bookingForm {
-            display: none;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        #successMessage {
-            display: none;
-            color: #00ff00;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-    </style>
+    <title>Professional Travel Booking</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="navbar">
-        <a href="#destinations">Destinations</a>
-        <a href="#booking">Book Now</a>
+        <h1>Travel Booker</h1>
+        <ul class="nav-links">
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#booking">Book Now</a></li>
+        </ul>
     </nav>
-
-    <div class="container">
-        <section id="destinations" class="section">
-            <h2>Top Destinations</h2>
-            <div class="card" onclick="openBooking('Bali, Indonesia')">Bali, Indonesia - $800</div>
-            <div class="card" onclick="openBooking('Paris, France')">Paris, France - $1200</div>
-            <div class="card" onclick="openBooking('Tokyo, Japan')">Tokyo, Japan - $1000</div>
-            <div class="card" onclick="openBooking('Goa, India')">Goa, India - $600</div>
-        </section>
-
-        <section id="booking" class="section">
-            <h2>Book Your Trip</h2>
-            <div id="bookingForm">
-                <p>Booking for: <span id="selectedDestination"></span></p>
-                <form onsubmit="submitBooking(event)">
-                    <input type="text" id="name" placeholder="Your Name" required>
-                    <input type="email" id="email" placeholder="Email" required>
-                    <button type="submit" class="btn">Submit</button>
-                </form>
-            </div>
-            <div id="successMessage">Booking successful! Congratulations on your trip.</div>
-        </section>
-    </div>
-
-    <script>
-        function openBooking(destination) {
-            document.getElementById('selectedDestination').innerText = destination;
-            document.getElementById('bookingForm').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'none';
-        }
-        
-        function submitBooking(event) {
-            event.preventDefault();
-            document.getElementById('bookingForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-        }
-    </script>
+    
+    <header class="hero">
+        <h2>Explore the World with Us</h2>
+    </header>
+    
+    <section id="destinations" class="destinations">
+        <h2>Top Destinations</h2>
+        <div class="destination-grid">
+            <div class="destination" onclick="openBooking('India')">India</div>
+            <div class="destination" onclick="openBooking('Paris')">Paris</div>
+            <div class="destination" onclick="openBooking('New York')">New York</div>
+        </div>
+    </section>
+    
+    <section id="booking" class="booking-form hidden">
+        <h2>Book Your Trip</h2>
+        <form id="bookingForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="date">Travel Date:</label>
+            <input type="date" id="date" required>
+            
+            <button type="submit">Confirm Booking</button>
+        </form>
+        <p id="successMessage" class="hidden">Booking successful! Congratulations!</p>
+    </section>
+    
+    <script src="script.js"></script>
 </body>
 </html>
