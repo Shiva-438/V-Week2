@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Travel Booking</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background: #1e1e1e;
+        }
+        .nav-links a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+        .destination {
+            background: #333;
+            padding: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .booking-form {
+            background: #222;
+            padding: 20px;
+            border-radius: 5px;
+            width: 50%;
+            margin: auto;
+        }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -25,11 +64,16 @@
             <div class="destination" onclick="openBooking('India')">India</div>
             <div class="destination" onclick="openBooking('Paris')">Paris</div>
             <div class="destination" onclick="openBooking('New York')">New York</div>
+            <div class="destination" onclick="openBooking('London')">London</div>
+            <div class="destination" onclick="openBooking('Tokyo')">Tokyo</div>
+            <div class="destination" onclick="openBooking('Dubai')">Dubai</div>
+            <div class="destination" onclick="openBooking('Sydney')">Sydney</div>
+            <div class="destination" onclick="openBooking('Rome')">Rome</div>
         </div>
     </section>
     
     <section id="booking" class="booking-form hidden">
-        <h2>Book Your Trip</h2>
+        <h2>Book Your Trip to <span id="selectedDestination"></span></h2>
         <form id="bookingForm">
             <label for="name">Name:</label>
             <input type="text" id="name" required>
@@ -40,11 +84,23 @@
             <label for="date">Travel Date:</label>
             <input type="date" id="date" required>
             
+            <label for="seats">Number of Seats:</label>
+            <input type="number" id="seats" min="1" required>
+            
             <button type="submit">Confirm Booking</button>
         </form>
         <p id="successMessage" class="hidden">Booking successful! Congratulations!</p>
     </section>
     
-    <script src="script.js"></script>
+    <script>
+        function openBooking(destination) {
+            document.getElementById('selectedDestination').innerText = destination;
+            document.getElementById('booking').classList.remove('hidden');
+        }
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('successMessage').classList.remove('hidden');
+        });
+    </script>
 </body>
 </html>
