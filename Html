@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav {
+            background: #007bff;
+            padding: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        input, select, button {
+            display: block;
+            margin: 10px auto;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#booking">Booking</a></li>
+        </ul>
+    </nav>
+
+    <section id="destinations">
+        <h2>Popular Destinations</h2>
+        <input type="text" id="search" placeholder="Search Destinations...">
+        <div id="destination-list">
+            <p>Paris</p>
+            <p>New York</p>
+            <p>Tokyo</p>
+        </div>
+    </section>
+
+    <section id="booking">
+        <h2>Book Your Trip</h2>
+        <form id="bookingForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="destination">Destination:</label>
+            <select id="destination">
+                <option>Paris</option>
+                <option>New York</option>
+                <option>Tokyo</option>
+            </select>
+
+            <button type="submit">Book Now</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById("search").addEventListener("input", function () {
+            let filter = this.value.toLowerCase();
+            let destinations = document.querySelectorAll("#destination-list p");
+
+            destinations.forEach(destination => {
+                if (destination.textContent.toLowerCase().includes(filter)) {
+                    destination.style.display = "block";
+                } else {
+                    destination.style.display = "none";
+                }
+            });
+        });
+
+        document.getElementById("bookingForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let destination = document.getElementById("destination").value;
+            alert(Thank you, ${name}! Your trip to ${destination} is booked.);
+        });
+    </script>
+</body>
+</html>
